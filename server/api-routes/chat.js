@@ -3,9 +3,6 @@ import { getAllMessages, saveMessage } from "../controller/chat.js";
 
 const router = express.Router();
 
-// /api/books
-// router.get("/", getAllMessages);
-
 router.get("/:room", getAllMessages);
 
 router.post(

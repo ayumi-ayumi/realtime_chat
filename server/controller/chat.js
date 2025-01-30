@@ -1,23 +1,16 @@
 import Message from "../models/chat.js";
 
-// async function getAllMessages(req, res) {
-//   const messages = await Message.find().sort({ updatedAt: -1 });
-//   res.json(messages);
-// }
-
 async function getAllMessages(req, res) {
   const _room = req.params.room;
   const messages = await Message.find({ room: _room });
   
   if (messages === null) return res.status(404).json({ msg: "Page Not Found" });
   res.json(messages);
-  // res.send("/api/books");
 }
 
 async function saveMessage(req, res) {
   const message = new Message(req.body);
   const newMessage = await message.save();
-
   res.status(201).json(newMessage);
 }
 

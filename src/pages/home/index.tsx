@@ -1,13 +1,22 @@
-import styles from './styles.module.css';
 import { useNavigate } from 'react-router-dom';
+import styles from './styles.module.css';
 
-export default function Home({ username, setUsername, room, setRoom, socket }) {
+type Props = {
+  username: string,
+  setUsername: React.Dispatch<React.SetStateAction<string>>,
+  room: string,
+  setRoom: React.Dispatch<React.SetStateAction<string>>,
+  socket: any
+}
+
+export default function Home({ username, setUsername, room, setRoom, socket }: Props) {
   const navigate = useNavigate();
 
   function joinRoom() {
     if (room !== '' && username !== '') {
       socket.emit('join_room', { username, room });
     }
+    localStorage.setItem('login_user', JSON.stringify({ username, room }));
     navigate(`/chat/${room}`, { replace: true });
   };
 

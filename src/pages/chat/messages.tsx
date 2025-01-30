@@ -1,18 +1,20 @@
-import chatApi from '../../api/chat';
-import styles from './styles.module.css';
 import { useState, useEffect, useRef } from 'react';
+import chatApi from '../../api/chat';
+import { Message } from '../../type/type';
+import styles from './styles.module.css';
 
-const Messages = ({ socket, room }) => {
-  const [messagesRecieved, setMessagesReceived] = useState([]);
-  const messagesColumnRef = useRef(null); 
+type Props = {
+  room: string,
+  socket: any
+}
 
-  console.log(room)
+export default function Messages ({ room, socket }: Props)  {
+  const [messagesRecieved, setMessagesReceived] = useState<Message[]>([]);
 
+  const messagesColumnRef = useRef<HTMLDivElement>(null);
 
-  // Runs whenever a socket event is recieved from the server
   useEffect(() => {
-    socket.on('receive_message', (data) => {
-      console.log(data);
+    socket.on('receive_message', (data: Message) => {
       setMessagesReceived((state) => [
         ...state,
         {
@@ -23,31 +25,32 @@ const Messages = ({ socket, room }) => {
       ]);
     });
 
-
-    // Remove event listener on component unmount
     return () => socket.off('receive_message');
   }, [socket]);
+
+  // useEffect(() => {
+  //   socket.on('messagesOnDB', (messages:Message[]) => {
+  //     setMessagesReceived((state) => [...messages, ...state]);
+  //   });
+
+  //   return () => socket.off('messagesOnDB');
+  // }, [socket]);
 
   useEffect(() => {
     async function fetchData() {
       const messagesOnDB = await chatApi.getAll(room)
-      // console.log(messagesOnDB)
-      // return messagesOnDB
-      setMessagesReceived((state) => [...messagesOnDB, state])
+      setMessagesReceived((state) => [...messagesOnDB, ...state])
     }
     fetchData();
-    // return () => {
-
-    // };
   }, [socket]);
 
   useEffect(() => {
+    if (!messagesColumnRef.current) return;
     messagesColumnRef.current.scrollTop =
       messagesColumnRef.current.scrollHeight;
   }, [messagesRecieved]);
 
-  // dd/mm/yyyy, hh:mm:ss
-  function formatDateFromTimestamp(timestamp) {
+  function formatDateFromTimestamp(timestamp: number) {
     const date = new Date(timestamp);
     return date.toLocaleString();
   }
@@ -57,17 +60,15 @@ const Messages = ({ socket, room }) => {
       {messagesRecieved.map((msg, i) => (
         <div className={styles.message} key={i}>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span className={styles.msgMeta}>{msg.username}</span>
+            <span className={styles.msgMeta}>{msg?.username}</span>
             <span className={styles.msgMeta}>
-              {formatDateFromTimestamp(msg.__createdtime__)}
+              {formatDateFromTimestamp(msg?.__createdtime__)}
             </span>
           </div>
-          <p className={styles.msgText}>{msg.message}</p>
+          <p className={styles.msgText}>{msg?.message}</p>
           <br />
         </div>
       ))}
     </div>
   );
 };
-
-export default Messages;

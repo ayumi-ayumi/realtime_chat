@@ -1,37 +1,29 @@
+import React, { useState } from 'react';
 import chatApi from '../../api/chat';
 import styles from './styles.module.css';
-import React, { useState } from 'react';
 
-const SendMessage = ({ socket, username, room }) => {
-  const [message, setMessage] = useState('');
+type Props = {
+  username: string,
+  room: string,
+  socket: any
+}
+
+export default function SendMessage({ username, room, socket }: Props) {
+  const [message, setMessage] = useState<string>('');
 
   const sendMessage = () => {
     if (message !== '') {
       const __createdtime__ = Date.now();
-      // Send message to server. We can't specify who we send the message to from the frontend. We can only send to server. Server can then send message to rest of users in room
+
       socket.emit('send_message', { username, room, message, __createdtime__ });
-
       chatApi.post({ username, room, message, __createdtime__ })
-
       setMessage('');
     }
   };
 
-
-  // const [ error, setError ] = useState("");
-  // const onSubmit = (formInputs) => {
-  //   formInputs.rating = rating;
-
-  //   bookApi.post(formInputs).then((_newBook) => {
-  //     dispatch({ type: "book/add", book: _newBook });
-  //     reset();
-  //     navigate("/books");
-  //   }).catch((e) => {
-  //     console.log('error occured!', e)
-  //     setError(e);
-  //   });
-
-  // };
+  const handleKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === "Enter") sendMessage();
+  };
 
   return (
     <div className={styles.sendMessageContainer}>
@@ -40,6 +32,7 @@ const SendMessage = ({ socket, username, room }) => {
         placeholder='Message...'
         onChange={(e) => setMessage(e.target.value)}
         value={message}
+        onKeyDown={handleKey}
       />
       <button className='btn btn-primary' onClick={sendMessage}>
         Send Message
@@ -48,4 +41,3 @@ const SendMessage = ({ socket, username, room }) => {
   );
 };
 
-export default SendMessage;

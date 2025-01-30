@@ -1,15 +1,22 @@
-import './App.css';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import io from 'socket.io-client'
 import Home from './pages/home';
-import { useState } from 'react';
 import Chat from './pages/chat';
+import { Login_user } from './type/type';
+import './App.css';
 
 const socket = io('http://localhost:3000');
 
-function App() {
-  const [username, setUsername] = useState('');
-  const [room, setRoom] = useState('');
+export default function App() {
+  const [username, setUsername] = useState<string>('');
+  const [room, setRoom] = useState<string>('');
+
+  useEffect(() => {
+    const user: Login_user = JSON.parse(localStorage.getItem('login_user') || "null");
+    setUsername(user?.username)
+    setRoom(user?.room)
+  }, []);
 
   return (
     <Router>
@@ -32,5 +39,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;

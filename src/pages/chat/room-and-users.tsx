@@ -1,15 +1,21 @@
-import styles from './styles.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { User } from '../../type/type';
+import styles from './styles.module.css';
 
-const RoomAndUsers = ({ socket, username, room }) => {
-  const [roomUsers, setRoomUsers] = useState([]);
+type Props = {
+  username: string, 
+  room:string, 
+  socket:any
+}
+
+export default function RoomAndUsers ({ username, room, socket }: Props)  {
+  const [roomUsers, setRoomUsers] = useState<User[]>([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    socket.on('chatroom_users', (data) => {
-      console.log(data);
+    socket.on('chatroom_users', (data: User[]) => {
       setRoomUsers(data);
     });
 
@@ -19,7 +25,7 @@ const RoomAndUsers = ({ socket, username, room }) => {
   const leaveRoom = () => {
     const __createdtime__ = Date.now();
     socket.emit('leave_room', { username, room, __createdtime__ });
-    // Redirect to home page
+    localStorage.removeItem('login_user');
     navigate('/', { replace: true });
   };
 
@@ -49,5 +55,3 @@ const RoomAndUsers = ({ socket, username, room }) => {
     </div>
   );
 };
-
-export default RoomAndUsers;
