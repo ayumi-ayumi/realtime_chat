@@ -1,3 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    @apply leading-normal font-normal text-indigo-900 bg-indigo-950 
+  }
+  a {
+    @apply font-medium text-indigo-400 
+  }
+  a:hover {
+    @apply text-indigo-600
+  }
+  button {
+    @apply rounded-lg border border-solid border-transparent py-2.5 px-5 text-base font-medium bg-indigo-950 cursor-pointer transition duration-200
+  }
+  button:hover {
+    @apply bg-indigo-700
+  }
+  button:focus,
+  button:focus-visible {
+    @apply outline-4
+  }
+
+}
+
+@layer components {
+  .btn {
+    @apply p-3.5 rounded-md font-bold text-base cursor-pointer border-none
+  }
+  .btn-primary {
+    @apply bg-indigo-300 text-indigo-800;
+  }
+  .btn-secondary {
+    @apply bg-indigo-800 text-white;
+  }
+  .btn-outline {
+    @apply text-indigo-300  bg-indigo-500 border border-solid border-indigo-300
+  }
+  .input {
+    @apply w-full p-3 rounded-md border-solid border border-purple-500 text-sm
+  }
+  .msgMeta-sender {
+    @apply text-indigo-900 text-xs
+  }
+  .msgMeta-receiver {
+    @apply text-indigo-100 text-xs
+  }
+
+}
+
+/*
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -65,4 +118,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+}  */

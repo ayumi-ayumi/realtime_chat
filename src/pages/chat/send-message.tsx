@@ -26,16 +26,16 @@ export default function SendMessage({ username, room, socket }: Props) {
   };
 
   return (
-    <div className={styles.sendMessageContainer}>
+    <div className='pt-4 pb-5 px-10 flex relative'>
       <input
-        className={styles.messageInput}
+        className='p-3.5 w-full rounded-md border border-solid border-indigo-300 text-sm '
         placeholder='Message...'
         onChange={(e) => setMessage(e.target.value)}
         value={message}
         onKeyDown={handleKey}
       />
-      <button className='btn btn-primary' onClick={sendMessage}>
-        Send Message
+      <button className='absolute right-[8%] top-[25%] p-1.5 bg-indigo-300 rounded-full' onClick={sendMessage}>
+        <img src='/send_icon.png' alt='send icon' className='h-7 w-7 rotate-[315deg]'/>
       </button>
     </div>
   );

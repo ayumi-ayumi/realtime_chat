@@ -30,17 +30,15 @@ export default function RoomAndUsers ({ username, room, socket }: Props)  {
   };
 
   return (
-    <div className={styles.roomAndUsersColumn}>
-      <h2 className={styles.roomTitle}>{room}</h2>
+    <div className='border-r border-solid border-slate-300 pr-3'>
+      <h2 className='mb-16 uppercase text-3xl text-indigo-500'>{room}</h2>
 
       <div>
-        {roomUsers.length > 0 && <h5 className={styles.usersTitle}>Users:</h5>}
-        <ul className={styles.usersList}>
+        {roomUsers.length > 0 && <h5 className='text-xl text-indigo-500'>Users:</h5>}
+        <ul className='list-none pl-0 mb-16 bg-indigo-300'>
           {roomUsers.map((user) => (
             <li
-              style={{
-                fontWeight: `${user.username === username ? 'bold' : 'normal'}`,
-              }}
+              className={`mb-2 ${user.username === username ? 'font-black' : 'font-normal'}`}
               key={user.id}
             >
               {user.username}

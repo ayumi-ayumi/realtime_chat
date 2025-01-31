@@ -4,7 +4,7 @@ import io from 'socket.io-client'
 import Home from './pages/home';
 import Chat from './pages/chat';
 import { Login_user } from './type/type';
-import './App.css';
+// import './App.css';
 
 const socket = io('http://localhost:3000');
 

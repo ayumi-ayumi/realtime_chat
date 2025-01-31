@@ -12,6 +12,13 @@ type Props = {
 export default function Home({ username, setUsername, room, setRoom, socket }: Props) {
   const navigate = useNavigate();
 
+  const rooms = [
+    { value: 'javascript', name: 'JavaScript' },
+    { value: 'node', name: 'Node' },
+    { value: 'express', name: 'Express' },
+    { value: 'react', name: 'React' },
+  ]
+
   function joinRoom() {
     if (room !== '' && username !== '') {
       socket.emit('join_room', { username, room });
@@ -21,29 +28,28 @@ export default function Home({ username, setUsername, room, setRoom, socket }: P
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.formContainer}>
-        <h1>{`<>DevRooms</>`}</h1>
+    <div className='min-h-screen w-full flex justify-center items-center bg-purple-500'>
+      <div className='w-auto my-0 mx-auto p-12 bg-violet-50 rounded-md flex flex-col items-center gap-7'>
+        <h1 className='text-4xl leading-tight'>{`<>DevRooms</>`}</h1>
         <input
-          className={styles.input}
+          className='input'
           placeholder='Username...'
           onChange={(e) => setUsername(e.target.value)}
         />
 
         <select
-          className={styles.input}
+          className='input'
           onChange={(e) => setRoom(e.target.value)}
         >
           <option>-- Select Room --</option>
-          <option value='javascript'>JavaScript</option>
-          <option value='node'>Node</option>
-          <option value='express'>Express</option>
-          <option value='react'>React</option>
+          {rooms.map(room => (
+
+            <option value={room.value} key={room.value} className='mt-5'>{room.name}</option>
+          ))}
         </select>
 
         <button
-          className='btn btn-secondary'
-          style={{ width: '100%' }}
+          className='btn btn-secondary w-full'
           onClick={joinRoom}
         >
           Join Room

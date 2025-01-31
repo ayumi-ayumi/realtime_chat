@@ -4,11 +4,12 @@ import { Message } from '../../type/type';
 import styles from './styles.module.css';
 
 type Props = {
+  socket: any,
+  username: string,
   room: string,
-  socket: any
 }
 
-export default function Messages ({ room, socket }: Props)  {
+export default function Messages ({ socket, room, username }: Props)  {
   const [messagesRecieved, setMessagesReceived] = useState<Message[]>([]);
 
   const messagesColumnRef = useRef<HTMLDivElement>(null);
@@ -56,16 +57,17 @@ export default function Messages ({ room, socket }: Props)  {
   }
 
   return (
-    <div className={styles.messagesColumn} ref={messagesColumnRef}>
+    <div className='h-[80vh] overflow-auto py-2.5 pb-2.5 px-10' ref={messagesColumnRef}>
       {messagesRecieved.map((msg, i) => (
-        <div className={styles.message} key={i}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span className={styles.msgMeta}>{msg?.username}</span>
-            <span className={styles.msgMeta}>
+        // <div className='bg-indigo-800 rounded-md mb-6 max-w-xl p-3 w-4/5' key={i}>
+        <div className={`rounded-md mb-6 max-w-xl p-3 w-4/5 ${msg.username === username ? 'ml-auto bg-indigo-800' : 'bg-slate-300'}`} key={i}> 
+          <div className='flex justify-between'>
+            <span className={`${msg.username === username ? 'msgMeta-receiver' : 'msgMeta-sender'}`}>{msg?.username}</span>
+            <span className={`${msg.username === username ? 'msgMeta-receiver' : 'msgMeta-sender'}`}>
               {formatDateFromTimestamp(msg?.__createdtime__)}
             </span>
           </div>
-          <p className={styles.msgText}>{msg?.message}</p>
+          <p className={`${msg.username === username ? 'text-white' : 'text-indigo-900'}`}>{msg?.message}</p>
           <br />
         </div>
       ))}
