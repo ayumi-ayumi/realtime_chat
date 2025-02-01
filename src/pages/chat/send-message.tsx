@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import chatApi from '../../api/chat';
-import styles from './styles.module.css';
 
 type Props = {
   username: string,
@@ -26,16 +25,16 @@ export default function SendMessage({ username, room, socket }: Props) {
   };
 
   return (
-    <div className='pt-4 pb-5 px-10 flex relative'>
+    <div className='pt-4 pb-5 px-10 flex relative bg-white'>
       <input
-        className='p-3.5 w-full rounded-md border border-solid border-indigo-300 text-sm '
+        className='p-3.5 w-full text-sm outline-none'
         placeholder='Message...'
         onChange={(e) => setMessage(e.target.value)}
         value={message}
         onKeyDown={handleKey}
       />
-      <button className='absolute right-[8%] top-[25%] p-1.5 bg-indigo-300 rounded-full' onClick={sendMessage}>
-        <img src='/send_icon.png' alt='send icon' className='h-7 w-7 rotate-[315deg]'/>
+      <button className='absolute right-[8%] top-[25%] p-3 bg-white rounded-full transition duration-200 hover:bg-indigo-400 hover:shadow-[inset_0px_0px_7px_0px_white]' onClick={sendMessage}>
+        <i className="fa-solid fa-paper-plane fa-xl "></i>
       </button>
     </div>
   );

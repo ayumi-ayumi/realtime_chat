@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
+      sans: ['Lucida Console','Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],
     },
     
@@ -19,3 +19,4 @@ export default {
   plugins: [],
 }
 
+// Fira Mono, DejaVu Sans Mono, Menlo, Consolas, Liberation Mono, Monaco, Lucida Console, monospace

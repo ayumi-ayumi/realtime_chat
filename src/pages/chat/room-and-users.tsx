@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../../type/type';
-import styles from './styles.module.css';
 
 type Props = {
   username: string, 
@@ -30,15 +29,15 @@ export default function RoomAndUsers ({ username, room, socket }: Props)  {
   };
 
   return (
-    <div className='border-r border-solid border-slate-300 pr-3'>
-      <h2 className='mb-16 uppercase text-3xl text-indigo-500'>{room}</h2>
+    <div className='bg-slate-300 relative'>
+      <h2 className='mb-16 p-1.5 uppercase text-3xl text-center mx-auto text-indigo-500'>{room}</h2>
 
       <div>
-        {roomUsers.length > 0 && <h5 className='text-xl text-indigo-500'>Users:</h5>}
+        {roomUsers.length > 0 && <h5 className='text-xl text-indigo-500 pl-2'>Users:</h5>}
         <ul className='list-none pl-0 mb-16 bg-indigo-300'>
           {roomUsers.map((user) => (
             <li
-              className={`mb-2 ${user.username === username ? 'font-black' : 'font-normal'}`}
+              className={`mb-2 pl-2 ${user.username === username ? 'font-black' : 'font-normal'}`}
               key={user.id}
             >
               {user.username}
@@ -47,8 +46,9 @@ export default function RoomAndUsers ({ username, room, socket }: Props)  {
         </ul>
       </div>
 
-      <button className='btn btn-outline' onClick={leaveRoom}>
+      <button className='rounded-none text-slate-100 bg-indigo-500 p-3.5 font-bold text-base cursor-pointer border-none absolute bottom-0 w-full transition duration-200 hover:bg-indigo-700 ' onClick={leaveRoom}>
         Leave
+        <i className="fa-solid fa-right-from-bracket pl-3"></i>
       </button>
     </div>
   );

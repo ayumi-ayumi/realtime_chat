@@ -32,8 +32,9 @@ app.use(
 );
 app.use(express.json());
 app.use("/", apiRoutes);
+// console.log(__dirname + "/src/index.html")
 app.get("/*", function (req, res) {
-  res.sendFile(__dirname + "/index.html");
+  // res.sendFile(__dirname + "/index.html");
 });
 app.get("/", (req, res) => {
   console.log("connected!!!");
