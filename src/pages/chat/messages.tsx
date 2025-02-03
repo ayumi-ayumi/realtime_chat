@@ -24,6 +24,7 @@ export default function Messages({ socket, room, username }: Props) {
         },
       ]);
     });
+    
 
     return () => socket.off('receive_message');
   }, [socket]);
@@ -42,7 +43,7 @@ export default function Messages({ socket, room, username }: Props) {
       setMessagesReceived((state) => [...messagesOnDB, ...state])
     }
     fetchData();
-  }, [socket]);
+  }, []);
 
   useEffect(() => {
     if (!messagesColumnRef.current) return;

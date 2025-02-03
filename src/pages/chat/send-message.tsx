@@ -25,7 +25,7 @@ export default function SendMessage({ username, room, socket }: Props) {
   };
 
   return (
-    <div className='pt-4 pb-5 px-10 flex relative bg-white'>
+    <div className='pt-4 pb-5 px-10 relative bg-white'>
       <input
         className='p-3.5 w-full text-sm outline-none'
         placeholder='Message...'

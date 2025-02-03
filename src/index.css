@@ -3,10 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  /* :root {
     @apply leading-normal font-normal text-indigo-900 bg-indigo-950
-  }
-
+  } */
+ * {
+  @apply box-border text-indigo-900
+ }
   a {
     @apply font-medium text-indigo-400
   }

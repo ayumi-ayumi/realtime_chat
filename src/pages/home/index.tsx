@@ -12,10 +12,10 @@ export default function Home({ username, setUsername, room, setRoom, socket }: P
   const navigate = useNavigate();
 
   const rooms = [
-    { value: 'introduce yourself', name: 'Introduce Yourself' },
-    { value: 'technology talk', name: 'Technology Talk' },
-    { value: 'coding help', name: 'Coding Help' },
-    { value: 'career advice', name: 'Career Advice' },
+    { value: 'introduce-yourself', name: 'Introduce Yourself' },
+    { value: 'technology-talk', name: 'Technology Talk' },
+    { value: 'coding-help', name: 'Coding Help' },
+    { value: 'career-advice', name: 'Career Advice' },
   ]
 
   function joinRoom() {
@@ -27,7 +27,7 @@ export default function Home({ username, setUsername, room, setRoom, socket }: P
   };
 
   return (
-    <div className='min-h-screen w-full flex justify-center items-center bg-indigo-800'>
+    <div className='h-full w-full flex items-center bg-indigo-800'>
       <div className='w-auto my-0 mx-auto p-12 bg-indigo-50 rounded-md flex flex-col items-center gap-7 shadow-2xl shadow-slate-900'>
         <h1 className='text-4xl leading-tight tracking-tight'>
         <i className="fa-regular fa-comments mr-3"></i>

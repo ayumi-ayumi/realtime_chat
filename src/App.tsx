@@ -19,7 +19,6 @@ export default function App() {
 
   return (
     <Router>
-      <div className='App'>
         <Routes>
           <Route path='/' element={
             <Home
@@ -34,7 +33,6 @@ export default function App() {
             element={<Chat username={username} room={room} socket={socket} />}
           />
         </Routes>
-      </div>
     </Router>
   );
 }
