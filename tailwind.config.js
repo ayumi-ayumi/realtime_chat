@@ -11,12 +11,7 @@ export default {
     },
     
     extend: {
-      // spacing: {
-      //   '70': '70vh',
-      // }
     },
   },
   plugins: [],
 }
-
-// Fira Mono, DejaVu Sans Mono, Menlo, Consolas, Liberation Mono, Monaco, Lucida Console, monospace

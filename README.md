@@ -1,50 +1,37 @@
-# React + TypeScript + Vite
+# Realtime chat app 💬
+👉 [Click here to see the demo]()
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Chat page
+![Chat page](https://github.com/user-attachments/assets/60b26e02-38a3-4994-acae-5fb54578dee5)
 
-Currently, two official plugins are available:
+### Top page
+![Top page](https://github.com/user-attachments/assets/95cce1d9-f8a1-4699-bb45-96fad9f35255)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Responsive - mobile
+![mobile](https://github.com/user-attachments/assets/7c0378e1-d1b7-4a8c-91b9-ea6193c7431a)
 
-## Expanding the ESLint configuration
+## About
+Realtime chat app using socket.io, node.js, and mongoDB with a responsive design.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
+- Enter your username and select a room.
 
-- Configure the top-level `parserOptions` property like this:
+- Users in a room shown on the left side bar.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Your message is shown on the right side and received messages shown on the left side.
+   
+- Clicking the "Leave" button moves you to the top page.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Built With
+* [![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#)
+* [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)](#)
+* [![React Router](https://img.shields.io/badge/React_Router-CA4245?logo=react-router&logoColor=white)](#)
+* [![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff)](#)
+* [![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)](#)
+* [![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)](#)
+* [![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&logoColor=white)](#)
+* [![Express.js](https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB)](#)
+* socket.io
+* axios
+* Localstorage

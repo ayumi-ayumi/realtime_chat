@@ -6,7 +6,7 @@
   /* :root {
     @apply leading-normal font-normal text-indigo-900 bg-indigo-950
   } */
- * {
+  * {
   @apply box-border text-indigo-900
  }
   a {
@@ -33,7 +33,7 @@
 @layer components {
  
   .btn {
-    @apply p-3.5 font-medium rounded-lg py-2.5 px-5 text-base bg-indigo-950 cursor-pointer transition duration-200
+    @apply p-3.5 rounded-lg py-2.5 px-5 text-base bg-indigo-950 cursor-pointer transition duration-200
   }
 
   .btn-primary {

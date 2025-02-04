@@ -10,10 +10,10 @@ type Props = {
 
 export default function Chat({ username, room, socket }: Props) {
   return (
-    <div className='h-full grid bg-slate-50' style={{gridTemplateColumns: '1fr 3fr'}}>
+    <div className='sm:grid sm:grid-cols-[1fr_3fr] bg-slate-50 h-full'>
       <RoomAndUsersColumn socket={socket} username={username} room={room} />
 
-      <div className='flex flex-col justify-between'>
+      <div className='h-[90%] sm:h-full flex flex-col justify-between'>
         <MessagesReceived socket={socket} username={username} room={room} />
         <SendMessage socket={socket} username={username} room={room} />
       </div>
