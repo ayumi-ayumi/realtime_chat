@@ -21,14 +21,6 @@ const chatApi = {
   async post(messageData: Message) {
     await axios.post(ENDPOINT_URL, messageData);
   },
-  // async delete(book) {
-  //   const result = await axios.delete(ENDPOINT_URL + "/" + book._id);
-  //   return result.data;
-  // },
-  // async patch(book) {
-  //   const result = await axios.patch(ENDPOINT_URL + "/" + book._id, book);
-  //   return result.data;
-  // },
 };
 
 export default chatApi;

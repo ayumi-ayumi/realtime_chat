@@ -32,10 +32,6 @@ app.use(
 );
 app.use(express.json());
 app.use("/", apiRoutes);
-// console.log(__dirname + "/src/index.html")
-app.get("/*", function (req, res) {
-  // res.sendFile(__dirname + "/index.html");
-});
 app.get("/", (req, res) => {
   console.log("connected!!!");
 });
@@ -50,14 +46,12 @@ io.on("connection", (socket) => {
     socket.join(room);
 
     let __createdtime__ = Date.now();
-    // Send message to all users currently in the room, apart from the user that just joined
     socket.to(room).emit("receive_message", {
       message: `${username} has joined the chat room`,
       username: CHAT_BOT,
       __createdtime__,
     });
 
-    // Send welcome msg to user that just joined chat only
     socket.emit("receive_message", {
       message: `Welcome ${username}`,
       username: CHAT_BOT,
@@ -70,30 +64,18 @@ io.on("connection", (socket) => {
     let chatRoomUsers = allUsers.filter((user) => user.room === room);
     socket.to(room).emit("chatroom_users", chatRoomUsers);
     socket.emit("chatroom_users", chatRoomUsers);
-
-    // Get messages from db
-    // const messages = await axios.get(`http://localhost:3000/chat/${room}`);
-    // socket.emit("messagesOnDB", messages.data);
   });
 
   socket.on("send_message", (data) => {
     const { room } = data;
     io.in(room).emit("receive_message", data);
-
-    // axios
-    //   .post("http://localhost:3000/chat", data)
-    //   .then(function (response) {
-    //     console.log(response.data);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
   });
 
   socket.on("leave_room", (data) => {
     const { username, room } = data;
     socket.leave(room);
     const __createdtime__ = Date.now();
+
     // Remove user from memory
     allUsers = leaveRoom(socket.id, allUsers);
     socket.to(room).emit("chatroom_users", allUsers);
@@ -108,6 +90,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("User disconnected from the chat");
     const user = allUsers.find((user) => user.id == socket.id);
+    
     if (user?.username) {
       allUsers = leaveRoom(socket.id, allUsers);
       socket.to(chatRoom).emit("chatroom_users", allUsers);

@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import chatApi from '../../api/chat';
+import { Props } from '../../type/type';
 
-type Props = {
-  username: string,
-  room: string,
-  socket: any
-}
-
-export default function SendMessage({ username, room, socket }: Props) {
+export default function SendMessage({ socket, room, username }: Props) {
   const [message, setMessage] = useState<string>('');
 
   const sendMessage = () => {
@@ -25,7 +20,7 @@ export default function SendMessage({ username, room, socket }: Props) {
   };
 
   return (
-    <div className='pt-4 pb-5 px-10 relative bg-white'>
+    <div className='py-4 px-10 relative bg-white'>
       <input
         className='p-3.5 w-full text-sm outline-none'
         placeholder='Message...'

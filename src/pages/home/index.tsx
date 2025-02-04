@@ -28,7 +28,7 @@ export default function Home({ username, setUsername, room, setRoom, socket }: P
 
   return (
     <div className='h-full w-full flex items-center bg-indigo-800'>
-      <div className='w-auto my-0 mx-auto p-12 bg-indigo-50 rounded-md flex flex-col items-center gap-7 shadow-2xl shadow-slate-900'>
+      <div className='w-auto mx-auto p-12 bg-indigo-50 rounded-md flex flex-col items-center gap-7 shadow-2xl shadow-slate-900'>
         <h1 className='text-4xl leading-tight tracking-tight'>
         <i className="fa-regular fa-comments mr-3"></i>
           Community chat</h1>

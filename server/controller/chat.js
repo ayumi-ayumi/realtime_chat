@@ -3,7 +3,7 @@ import Message from "../models/chat.js";
 async function getAllMessages(req, res) {
   const _room = req.params.room;
   const messages = await Message.find({ room: _room });
-  
+
   if (messages === null) return res.status(404).json({ msg: "Page Not Found" });
   res.json(messages);
 }

@@ -1,20 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import chatApi from '../../api/chat';
-import { Message } from '../../type/type';
-
-type Props = {
-  socket: any,
-  username: string,
-  room: string,
-}
+import { Bot_Message, Message, Props } from '../../type/type';
 
 export default function Messages({ socket, room, username }: Props) {
-  const [messagesRecieved, setMessagesReceived] = useState<Message[]>([]);
+  const [messagesRecieved, setMessagesReceived] = useState<Message[] | Bot_Message[]>([]);
 
   const messagesColumnRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    socket.on('receive_message', (data: Message) => {
+    socket.on('receive_message', (data: Bot_Message) => {
       setMessagesReceived((state) => [
         ...state,
         {
@@ -24,18 +18,10 @@ export default function Messages({ socket, room, username }: Props) {
         },
       ]);
     });
-    
+
 
     return () => socket.off('receive_message');
   }, [socket]);
-
-  // useEffect(() => {
-  //   socket.on('messagesOnDB', (messages:Message[]) => {
-  //     setMessagesReceived((state) => [...messages, ...state]);
-  //   });
-
-  //   return () => socket.off('messagesOnDB');
-  // }, [socket]);
 
   useEffect(() => {
     async function fetchData() {
@@ -57,7 +43,7 @@ export default function Messages({ socket, room, username }: Props) {
   }
 
   return (
-    <div className='h-[80vh] overflow-auto py-2.5 pb-2.5 px-10' ref={messagesColumnRef}>
+    <div className='h-[80vh] overflow-auto py-2.5 px-10' ref={messagesColumnRef}>
       {messagesRecieved.map((msg, i) => (
         <div key={i}>
           <div className={`flex flex-col ${msg.username === username ? 'items-end' : ''}`}>

@@ -1,14 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../../type/type';
+import { Props, User } from '../../type/type';
 
-type Props = {
-  username: string,
-  room: string,
-  socket: any
-}
-
-export default function RoomAndUsers({ username, room, socket }: Props) {
+export default function RoomAndUsers({ socket, room, username }: Props) {
   const [roomUsers, setRoomUsers] = useState<User[]>([]);
 
   const navigate = useNavigate();
@@ -46,7 +40,7 @@ export default function RoomAndUsers({ username, room, socket }: Props) {
         </ul>
       </div>
 
-      <button className='row-[1_/_span_2] col-start-2 rounded-none text-slate-100 bg-indigo-500 p-3.5 text-base cursor-pointer border-none sm:absolute bottom-0 w-full transition duration-200 sm:hover:bg-indigo-700' onClick={leaveRoom}>
+      <button className='row-[1_/_span_2] col-start-2 text-slate-100 bg-indigo-500 p-3.5 text-base cursor-pointer sm:absolute bottom-0 w-full transition duration-200 sm:hover:bg-indigo-700' onClick={leaveRoom}>
         <span className='hidden sm:inline-block '>Leave</span>
         <i className="fa-solid fa-right-from-bracket p-4 sm:pl-3 hover:bg-indigo-400 sm:hover:bg-indigo-700 transition duration-200 rounded-3xl"></i>
       </button>

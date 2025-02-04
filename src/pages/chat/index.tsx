@@ -1,14 +1,9 @@
-import RoomAndUsersColumn from './room-and-users'; 
+import RoomAndUsersColumn from './room-and-users';
 import MessagesReceived from './messages';
 import SendMessage from './send-message';
+import { Props } from '../../type/type';
 
-type Props = {
-  username: string,
-  room: string,
-  socket: any
-}
-
-export default function Chat({ username, room, socket }: Props) {
+export default function Chat({ socket, room, username }: Props) {
   return (
     <div className='sm:grid sm:grid-cols-[1fr_3fr] bg-slate-50 h-full'>
       <RoomAndUsersColumn socket={socket} username={username} room={room} />
