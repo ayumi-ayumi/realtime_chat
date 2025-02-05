@@ -5,15 +5,20 @@ import cors from "cors";
 import axios from "axios";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import env from "dotenv";
+env.config();
 import apiRoutes from "./api-routes/index.js";
 import leaveRoom from "./utils/leave-room.js";
 import "./helpers/db.js";
 
 const app = express();
 const server = http.createServer(app);
+
+const FRONTEND_URL = process.env.FRONTEND_URL
+
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: FRONTEND_URL,
     methods: ["GET", "POST"],
   },
 });
@@ -24,7 +29,7 @@ const __dirname = dirname(__filename);
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
