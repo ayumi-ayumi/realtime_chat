@@ -5,7 +5,8 @@ import Home from './pages/home';
 import Chat from './pages/chat';
 import { Login_user } from './type/type';
 
-const socket = io('http://localhost:3000');
+const socket = io(import.meta.env.VITE_ENDPOINT_URL);
+// const socket = io('http://localhost:3000');
 
 export default function App() {
   const [username, setUsername] = useState<string>('');
