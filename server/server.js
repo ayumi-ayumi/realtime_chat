@@ -5,8 +5,6 @@ import cors from "cors";
 import axios from "axios";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import env from "dotenv";
-env.config();
 import apiRoutes from "./api-routes/index.js";
 import leaveRoom from "./utils/leave-room.js";
 import "./helpers/db.js";

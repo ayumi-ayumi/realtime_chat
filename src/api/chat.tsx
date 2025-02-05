@@ -11,7 +11,8 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(error.response || 'Try later');
 });
 
-const ENDPOINT_URL = "http://localhost:3000/chat";
+const ENDPOINT_URL:string = import.meta.env.VITE_ENDPOINT_URL
+// const ENDPOINT_URL = "http://localhost:3000/chat";
 
 const chatApi = {
   async getAll(room: string) {
