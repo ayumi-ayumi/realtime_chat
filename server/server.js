@@ -17,7 +17,7 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 // const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -32,6 +32,7 @@ app.use(
 app.use(express.json());
 app.use("/", apiRoutes);
 app.get("/", (req, res) => {
+  res.send("Hello World")
   console.log("connected!!!");
 });
 
@@ -100,6 +101,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(PORT,  "0.0.0.0",  () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
